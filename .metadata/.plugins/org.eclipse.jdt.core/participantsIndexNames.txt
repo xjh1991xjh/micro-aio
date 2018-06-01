@@ -1,0 +1,3 @@
+INDEX VERSION 1.130
+E:\ProjectFiles\CompanyProjects\XDF\springcloud\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3655700956.index
+\micro-best-practice\src\main\resources
