@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cn.xdf</groupId>
 	<artifactId>micro-parent</artifactId>
@@ -8,14 +10,29 @@
 	<name>micro-parent</name>
 	<description>micro-parent</description>
 	<url>http://maven.apache.org</url>
-	
+
 	<properties>
 		<jdk.version>1.8</jdk.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>cn.xdf</groupId>
+				<artifactId>micro-api</artifactId>
+				<version>0.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>cn.xdf</groupId>
+				<artifactId>micro-common</artifactId>
+				<version>0.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>cn.xdf</groupId>
+				<artifactId>micro-security</artifactId>
+				<version>0.0.1</version>
+			</dependency>
 			<dependency>   <!-- 进行SpringCloud依赖包的导入处理 -->
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
@@ -30,11 +47,32 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.0.4</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>1.0.31</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>1.3.0</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
+
 	<build>
 		<finalName>micro-parent</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -45,12 +83,25 @@
 					<encode>${project.build.sourceEncoding}</encode>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<delimiters>
+						<delimiter>$</delimiter>
+					</delimiters>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-	
-  <modules>
-    <module>micro-util</module>
-    <module>micro-auth</module>
-    <module>micro-best-practice</module>
-  </modules>
+
+	<modules>
+		<module>micro-util</module>
+		<module>micro-common</module>
+		<module>micro-api</module>
+		<module>micro-security</module>
+		<module>micro-eureka</module>
+		<module>micro-practice-provider</module>
+	</modules>
 </project>
